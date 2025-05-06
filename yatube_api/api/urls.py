@@ -5,8 +5,10 @@ from api.views import PostViewSet, CommentViewSet, GroupViewSet
 
 router = SimpleRouter()
 router.register('posts', PostViewSet)
-router.register(r'posts/(?P<post_id>\d+)/comments', CommentViewSet, basename='post-comments')
-router.register(r'posts/(?P<post_id>\d+)/comments/(?P<comment_id>\d+)', CommentViewSet, basename='post-comment')
+router.register(r'posts/(?P<post_id>\d+)/comments',
+                CommentViewSet, basename='post-comments')
+router.register(r'posts/(?P<post_id>\d+)/comments/(?P<comment_id>\d+)',
+                CommentViewSet, basename='post-comment')
 router.register('groups', GroupViewSet)
 
 urlpatterns = [
