@@ -1,10 +1,8 @@
 from rest_framework.response import Response
-
 from posts.models import Post, Group, Comment
 from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
-
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -25,6 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
             raise PermissionDenied('Вы не можете удалить чужой пост!')
         super().perform_destroy(instance)
 
+
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -44,6 +43,7 @@ class GroupViewSet(viewsets.ModelViewSet):
             {"detail": "Группы можно создавать только через админку."},
             status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
